@@ -1,0 +1,57 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: php:8.2-fpm
+    container_name: liateam-app
+    working_dir: /var/www
+    restart: on-failure
+    depends_on:
+      - db
+    volumes:
+      - ./:/var/www
+    networks:
+      - app-network
+
+  webserver:
+    image: nginx:alpine
+    container_name: liateam-webserver
+    restart: unless-stopped
+    ports:
+      - "8000:80"
+    volumes:
+      - ./:/var/www
+      - ./docker/nginx/conf.d/:/etc/nginx/conf.d/
+    networks:
+      - app-network
+
+  db:
+    image: mongo:latest
+    container_name: liateam-mongodb
+    ports:
+      - "27017:27017"
+    networks:
+      - app-network
+    volumes:
+      - mongodbdata:/data/db
+
+  cache:
+    image: redis:alpine
+    container_name: liateam-redisCache
+    ports:
+      - "6379:6379"
+    networks:
+      - app-network
+    volumes:
+      - redisdata:/data
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  mongodbdata:
+  redisdata:
