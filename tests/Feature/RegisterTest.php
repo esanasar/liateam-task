@@ -11,8 +11,7 @@ class RegisterTest extends TestCase
 
     use RefreshDatabase;
 
-    /** @test */
-    public function user_can_register()
+    public function test_user_can_register()
     {
 
         $response = $this->postJson('api/register',[

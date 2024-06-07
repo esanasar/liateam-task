@@ -11,8 +11,7 @@ class ProductTest extends TestCase
 {
     use RefreshDatabase;
 
-    /** @test */
-    public function user_can_create_product()
+    public function test_user_can_create_product()
     {
         $user = User::factory()->create();
 
@@ -30,8 +29,7 @@ class ProductTest extends TestCase
         ]);
     }
 
-    /** @test */
-    public function user_can_view_products()
+    public function test_user_can_view_products()
     {
         $user = User::factory()->create();
 
@@ -43,8 +41,7 @@ class ProductTest extends TestCase
             ]);
     }
 
-    /** @test */
-    public function user_can_update_product()
+    public function test_user_can_update_product()
     {
         $user = User::factory()->create();
         $product = Product::factory()->create([
@@ -67,8 +64,7 @@ class ProductTest extends TestCase
         ]);
     }
 
-    /** @test */
-    public function user_can_delete_product()
+    public function test_user_can_delete_product()
     {
         $user = User::factory()->create();
         $product = Product::factory()->create([
