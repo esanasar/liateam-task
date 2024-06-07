@@ -39,6 +39,7 @@ services:
       - app-network
     volumes:
       - mongodbdata:/data/db
+    command: [ "mongod", "--replSet", "rs0" ]
 
   cache:
     image: redis:alpine
