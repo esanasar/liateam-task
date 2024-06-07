@@ -12,8 +12,7 @@ class OrderTest extends TestCase
 {
     use RefreshDatabase;
 
-    /** @test */
-    public function user_can_create_order()
+    public function test_user_can_create_order()
     {
         $user = User::factory()->create();
         $product = Product::factory()->create([
@@ -39,8 +38,7 @@ class OrderTest extends TestCase
         $this->assertEquals(8, $product->inventory);
     }
 
-    /** @test */
-    public function user_cannot_create_order_with_insufficient_inventory()
+    public function test_user_cannot_create_order_with_insufficient_inventory()
     {
         $user = User::factory()->create();
         $product = Product::factory()->create([

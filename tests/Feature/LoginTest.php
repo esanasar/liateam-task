@@ -12,8 +12,7 @@ class LoginTest extends TestCase
 
     use RefreshDatabase;
 
-    /** @test */
-    public function user_can_login()
+    public function test_user_can_login()
     {
 
         $user = User::factory()->create([
